@@ -27,10 +27,13 @@ screen.onkey(paddle2.go_down, "s")
 
 # TODO game loop
 game_is_on = True
+direction = 1
 
 while game_is_on:
+
     time.sleep(0.1)
     screen.update()
+    # ball.start_move()
     ball.move()
 #     detect ball collision
     if ball.ycor() > 280 or ball.ycor() < -280:
@@ -38,4 +41,18 @@ while game_is_on:
 #     detect paddle collision
     if ball.distance(paddle) < 50 and ball.xcor() > 320 or ball.distance(paddle2) < 50 and ball.xcor() < -320:
         ball.bounce_x()
+
+    if ball.xcor() >= 380:
+        ball.reset_position()
+        # ball.setpos(0, 0)
+        # direction = -1
+        # ball.stop_move()
+        # time.sleep(3)
+
+    if ball.xcor() <= -380:
+        ball.reset_position()
+        # ball.setpos(0, 0)
+        # direction = 1
+        # ball.stop_move()
+        # time.sleep(3)
 screen.exitonclick()
